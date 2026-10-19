@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "Room": {
+      "title": "Room",
+      "description": "Information about a room in the hostel",
+      "type": "object",
+      "properties": {
+        "roomNumber": {
+          "type": "string",
+          "description": "The unique number for the room (e.g., 201)"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["cleaning", "done", "available", "occupied"],
+          "description": "Current maintenance status of the room"
+        },
+        "type": {
+          "type": "string",
+          "description": "Room type (e.g., Single, Double, Dormitory)"
+        },
+        "lastAction": {
+          "type": "string",
+          "enum": ["check_in", "check_out", "none"],
+          "description": "Latest check-in/out action"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last time the status was updated"
+        },
+        "assignedToday": {
+          "type": "boolean",
+          "description": "Whether this room is assigned for cleaning today"
+        }
+      },
+      "required": ["roomNumber", "status"]
+    }
+  },
+  "firestore": {
+    "/rooms/{roomId}": {
+      "schema": "Room",
+      "description": "Collection of all rooms in Arustay Hostel"
+    }
+  }
+}
